@@ -12,6 +12,7 @@ import TrustSection from "@/components/TrustSection";
 import FAQSection from "@/components/FAQSection";
 import BookingEnquiry from "@/components/BookingEnquiry";
 import ContactFooter from "@/components/ContactFooter";
+import StickyMobileCTA from "@/components/StickyMobileCTA";
 
 export default function HomePage() {
   const [selectedVehicle, setSelectedVehicle] = useState<string>("");
@@ -57,6 +58,9 @@ export default function HomePage() {
 
       {/* 11. Contact CTA and Footer */}
       <ContactFooter />
+
+      {/* 12. Floating Sticky Mobile CTA on scroll */}
+      <StickyMobileCTA />
     </main>
   );
 }

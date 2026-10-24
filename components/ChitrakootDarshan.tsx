@@ -54,7 +54,7 @@ export default function ChitrakootDarshan({
   return (
     <section
       id="destinations"
-      className="relative scroll-mt-16 overflow-hidden bg-[#0A0A0A] py-14 text-white sm:py-20 lg:py-24"
+      className="relative scroll-mt-16 overflow-hidden bg-[#0A0A0A] py-12 text-white sm:py-16 lg:py-20"
     >
       {/* Background radial gold glow */}
       <div

@@ -42,7 +42,7 @@ export default function VehicleShowcase({
   return (
     <section
       id="vehicles"
-      className="relative scroll-mt-16 overflow-hidden bg-[#F7F5EF] py-14 text-[#151515] sm:py-20 lg:py-24"
+      className="relative scroll-mt-16 overflow-hidden bg-[#F7F5EF] py-12 text-[#151515] sm:py-16 lg:py-20"
     >
       {/* Background decoration */}
       <div
@@ -57,7 +57,7 @@ export default function VehicleShowcase({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration }}
-          className="mb-10 flex flex-col gap-4 md:mb-14 md:flex-row md:items-end md:justify-between"
+          className="mb-8 flex flex-col gap-4 md:mb-12 md:flex-row md:items-end md:justify-between"
         >
           <div>
             <div className="mb-3.5 flex items-center gap-2.5">
@@ -87,7 +87,7 @@ export default function VehicleShowcase({
         </motion.div>
 
         {/* Fleet Filter Tabs */}
-        <div className="mb-8 flex flex-wrap gap-2.5 sm:mb-10">
+        <div className="mb-6 flex flex-wrap gap-2.5 sm:mb-8">
           <button
             type="button"
             onClick={() => setFilter("all")}
@@ -130,7 +130,7 @@ export default function VehicleShowcase({
         </div>
 
         {/* Fleet Cards: Horizontal on mobile, Grid on tablet/desktop */}
-        <div className="-mx-4 flex gap-4 overflow-x-auto px-4 pb-4 no-scrollbar snap-x snap-mandatory sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
+        <div className="-mx-4 flex gap-4 overflow-x-auto overscroll-x-contain px-4 pb-4 no-scrollbar snap-x snap-mandatory sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 sm:pb-0 lg:grid-cols-3">
           {filteredFleet.map((vehicle, idx) => (
             <motion.article
               key={vehicle.id}
@@ -153,7 +153,7 @@ export default function VehicleShowcase({
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
 
                   {/* Type Badge */}
                   <div className="absolute left-3 top-3 flex gap-1.5">

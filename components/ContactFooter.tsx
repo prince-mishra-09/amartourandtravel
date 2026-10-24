@@ -142,7 +142,7 @@ export default function ContactFooter() {
       </section>
 
       {/* COMPREHENSIVE FOOTER */}
-      <footer className="border-t border-white/10 bg-[#090909] text-white">
+      <footer className="border-t border-white/10 bg-[#090909] text-white pb-20 lg:pb-0">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-14 lg:px-8">
           <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
             {/* Col 1: Brand & Blessing */}

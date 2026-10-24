@@ -104,6 +104,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
     >
       <head>
@@ -112,7 +113,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body className="min-h-full flex flex-col bg-[#090909] text-white selection:bg-[#FACC15] selection:text-black">
+      <body
+        suppressHydrationWarning
+        className="min-h-full flex flex-col bg-[#090909] text-white selection:bg-[#FACC15] selection:text-black"
+      >
         {children}
       </body>
     </html>

@@ -104,7 +104,7 @@ Please share the applicable fare and vehicle availability.`;
   return (
     <section
       id="booking-enquiry"
-      className="relative scroll-mt-16 overflow-hidden bg-[#0D0D0D] py-14 text-white sm:py-20 lg:py-24"
+      className="relative scroll-mt-16 overflow-hidden bg-[#0D0D0D] py-12 text-white sm:py-16 lg:py-20"
     >
       {/* Decorative Glow */}
       <div

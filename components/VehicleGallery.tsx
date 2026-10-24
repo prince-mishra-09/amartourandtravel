@@ -23,15 +23,15 @@ interface GalleryPhoto {
 
 const galleryPhotos: GalleryPhoto[] = [
   {
-    src: "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    src: "/fleet/ertiga.jpg",
     title: "Maruti Suzuki Ertiga",
     hindiTitle: "मारुति सुजुकी अर्टिगा",
     category: "MUV FLEET",
     alt: "Maruti Suzuki Ertiga passenger vehicle model for Chitrakoot tours",
-    note: "7-Seater · Ideal for family pilgrimage & outstation travel",
+    note: "6-7 Seater · Ideal for family pilgrimage & outstation travel",
   },
   {
-    src: "https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    src: "/fleet/scorpio.jpg",
     title: "Mahindra Scorpio",
     hindiTitle: "महिंद्रा स्कॉर्पियो",
     category: "SUV FLEET",
@@ -39,7 +39,7 @@ const galleryPhotos: GalleryPhoto[] = [
     note: "7-Seater · High ground clearance for regional tours & Kalinjar",
   },
   {
-    src: "https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    src: "/fleet/xylo.jpg",
     title: "Mahindra Xylo",
     hindiTitle: "महिंद्रा ज़ाइलो",
     category: "MUV FLEET",
@@ -47,7 +47,7 @@ const galleryPhotos: GalleryPhoto[] = [
     note: "7-8 Seater · Spacious cabin for elderly travelers & family groups",
   },
   {
-    src: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    src: "/fleet/tavera.jpg",
     title: "Tavera (Tour Fleet)",
     hindiTitle: "टवेरा",
     category: "MUV FLEET",
@@ -55,7 +55,7 @@ const galleryPhotos: GalleryPhoto[] = [
     note: "7-9 Seater · Reliable group vehicle for temple & parikrama routes",
   },
   {
-    src: "https://images.unsplash.com/photo-1519641471654-76ce0107ad1b?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    src: "/fleet/bolero.jpg",
     title: "Mahindra Bolero",
     hindiTitle: "महिंद्रा बोलेरो",
     category: "UTILITY FLEET",
@@ -63,7 +63,7 @@ const galleryPhotos: GalleryPhoto[] = [
     note: "7-9 Seater · Rugged capability on all rural & pilgrimage roads",
   },
   {
-    src: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    src: "/fleet/indigo.jpg",
     title: "Tata Indigo (Sedan)",
     hindiTitle: "टाटा इंडिगो",
     category: "SEDAN FLEET",
@@ -71,7 +71,7 @@ const galleryPhotos: GalleryPhoto[] = [
     note: "4-Seater · Comfortable sedan boot for luggage and station rides",
   },
   {
-    src: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&fm=jpg&q=85&w=1400",
+    src: "/fleet/swift.jpg",
     title: "Maruti Suzuki Swift",
     hindiTitle: "मारुति सुजुकी स्विफ्ट",
     category: "HATCHBACK FLEET",
@@ -310,7 +310,7 @@ export default function VehicleGallery() {
               </button>
             </div>
 
-            {/* Caption */}
+            {/* Caption & CTA */}
             <div className="border-t border-white/10 pt-3 text-center">
               <h3 className="text-lg font-black text-white sm:text-xl">
                 {galleryPhotos[activeIndex].title} ({galleryPhotos[activeIndex].hindiTitle})
@@ -320,6 +320,15 @@ export default function VehicleGallery() {
                   {galleryPhotos[activeIndex].note}
                 </p>
               )}
+              <div className="mt-3">
+                <a
+                  href="#booking-enquiry"
+                  onClick={closeGallery}
+                  className="inline-flex items-center gap-1.5 rounded-full bg-[#FACC15] px-5 py-2 text-xs font-bold text-black transition-colors hover:bg-white"
+                >
+                  <span>Enquire For This Vehicle</span>
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

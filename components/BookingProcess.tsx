@@ -50,7 +50,7 @@ export default function BookingProcess() {
   return (
     <section
       id="booking-process"
-      className="relative scroll-mt-16 overflow-hidden bg-[#F7F5EF] py-14 text-[#151515] sm:py-20 lg:py-24"
+      className="relative scroll-mt-16 overflow-hidden bg-[#F7F5EF] py-12 text-[#151515] sm:py-16 lg:py-20"
     >
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Section Heading */}
