@@ -110,6 +110,7 @@ export default function ChitrakootDarshan({
               <button
                 key={cat.id}
                 type="button"
+                suppressHydrationWarning
                 onClick={() => setActiveCategory(cat.id)}
                 className={`group flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-bold transition-all duration-300 sm:px-5 sm:py-3 sm:text-sm ${
                   isActive
@@ -201,6 +202,7 @@ export default function ChitrakootDarshan({
                 <div className="mt-5 border-t border-white/10 pt-4">
                   <button
                     type="button"
+                    suppressHydrationWarning
                     onClick={() => handleEnquire(dest)}
                     className="flex w-full items-center justify-between rounded-xl bg-white/[0.04] px-4 py-2.5 text-xs font-bold text-white transition-all duration-300 hover:bg-[#FACC15] hover:text-[#111111]"
                   >
@@ -221,6 +223,7 @@ export default function ChitrakootDarshan({
           <div className="mt-8 text-center">
             <button
               type="button"
+              suppressHydrationWarning
               onClick={() => setShowAll((prev) => !prev)}
               className="inline-flex items-center gap-2 rounded-full border border-[#FACC15]/40 bg-[#FACC15]/10 px-6 py-3 text-xs font-bold text-[#FACC15] transition-all hover:bg-[#FACC15] hover:text-black"
             >

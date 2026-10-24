@@ -90,6 +90,7 @@ export default function VehicleShowcase({
         <div className="mb-6 flex flex-wrap gap-2.5 sm:mb-8">
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => setFilter("all")}
             className={`rounded-full px-5 py-2.5 text-xs font-bold transition-all duration-300 sm:text-sm ${
               filter === "all"
@@ -101,6 +102,7 @@ export default function VehicleShowcase({
           </button>
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => setFilter("muv-suv")}
             className={`rounded-full px-5 py-2.5 text-xs font-bold transition-all duration-300 sm:text-sm ${
               filter === "muv-suv"
@@ -112,6 +114,7 @@ export default function VehicleShowcase({
           </button>
           <button
             type="button"
+            suppressHydrationWarning
             onClick={() => setFilter("sedan-hatch")}
             className={`rounded-full px-5 py-2.5 text-xs font-bold transition-all duration-300 sm:text-sm ${
               filter === "sedan-hatch"
@@ -206,6 +209,7 @@ export default function VehicleShowcase({
               <div className="border-t border-black/[0.06] p-4 sm:p-5 sm:pt-4">
                 <button
                   type="button"
+                  suppressHydrationWarning
                   onClick={() => handleEnquire(vehicle)}
                   className="flex w-full items-center justify-between rounded-xl bg-[#151515] px-4 py-2.5 text-xs font-bold text-white transition-colors duration-300 hover:bg-[#FACC15] hover:text-[#111111]"
                 >

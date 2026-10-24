@@ -169,6 +169,7 @@ Please share the applicable fare and vehicle availability.`;
               <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
                 <button
                   type="button"
+                  suppressHydrationWarning
                   onClick={() => handleTripEnquiry("whatsapp")}
                   className="inline-flex items-center gap-2 rounded-full bg-[#FACC15] px-6 py-3.5 text-sm font-bold text-black transition-colors hover:bg-white"
                 >
@@ -195,6 +196,7 @@ Please share the applicable fare and vehicle availability.`;
 
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={() => setFormSubmitted(false)}
                 className="mt-6 text-xs text-white/40 underline underline-offset-4 hover:text-white"
               >
@@ -203,6 +205,7 @@ Please share the applicable fare and vehicle availability.`;
             </motion.div>
           ) : (
             <form
+              suppressHydrationWarning
               onSubmit={(e) => {
                 e.preventDefault();
                 handleTripEnquiry("whatsapp");
@@ -237,6 +240,7 @@ Please share the applicable fare and vehicle availability.`;
                       id={nameId}
                       type="text"
                       required
+                      suppressHydrationWarning
                       value={fullName}
                       onChange={(e) => setFullName(e.target.value)}
                       placeholder="e.g. Ramesh Kumar"
@@ -261,6 +265,7 @@ Please share the applicable fare and vehicle availability.`;
                       id={phoneId}
                       type="tel"
                       required
+                      suppressHydrationWarning
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="e.g. 98XXXXXXXX"
@@ -282,6 +287,7 @@ Please share the applicable fare and vehicle availability.`;
                   <select
                     id={tripTypeId}
                     value={tripType}
+                    suppressHydrationWarning
                     onChange={(e) => setTripType(e.target.value)}
                     className="w-full rounded-xl border border-white/15 bg-[#1C1C1C] px-3.5 py-2.5 text-sm text-white transition-colors focus:border-[#FACC15] focus:outline-none focus:ring-1 focus:ring-[#FACC15]"
                   >
@@ -318,6 +324,7 @@ Please share the applicable fare and vehicle availability.`;
                     <select
                       id={vehicleId}
                       value={vehicle}
+                      suppressHydrationWarning
                       onChange={(e) => setVehicle(e.target.value)}
                       className="w-full rounded-xl border border-white/15 bg-[#1C1C1C] py-2.5 pl-10 pr-3.5 text-sm text-white transition-colors focus:border-[#FACC15] focus:outline-none focus:ring-1 focus:ring-[#FACC15]"
                     >
@@ -349,6 +356,7 @@ Please share the applicable fare and vehicle availability.`;
                     <input
                       id={pickupId}
                       type="text"
+                      suppressHydrationWarning
                       value={pickup}
                       onChange={(e) => setPickup(e.target.value)}
                       placeholder="e.g. Karwi Station, Hotel, Home"
@@ -372,6 +380,7 @@ Please share the applicable fare and vehicle availability.`;
                     <input
                       id={destId}
                       type="text"
+                      suppressHydrationWarning
                       value={destination}
                       onChange={(e) => setDestination(e.target.value)}
                       placeholder="e.g. Ram Ghat, Gupt Godavari, Prayagraj"
@@ -395,6 +404,7 @@ Please share the applicable fare and vehicle availability.`;
                       id={dateId}
                       type="date"
                       required
+                      suppressHydrationWarning
                       value={travelDate}
                       onChange={(e) => setTravelDate(e.target.value)}
                       className="w-full rounded-xl border border-white/15 bg-[#1C1C1C] px-3.5 py-2.5 text-sm text-white transition-colors focus:border-[#FACC15] focus:outline-none focus:ring-1 focus:ring-[#FACC15]"
@@ -413,6 +423,7 @@ Please share the applicable fare and vehicle availability.`;
                     <input
                       id={timeId}
                       type="time"
+                      suppressHydrationWarning
                       value={pickupTime}
                       onChange={(e) => setPickupTime(e.target.value)}
                       className="w-full rounded-xl border border-white/15 bg-[#1C1C1C] px-3.5 py-2.5 text-sm text-white transition-colors focus:border-[#FACC15] focus:outline-none focus:ring-1 focus:ring-[#FACC15]"
@@ -430,6 +441,7 @@ Please share the applicable fare and vehicle availability.`;
                   <select
                     id={acId}
                     value={acPreference}
+                    suppressHydrationWarning
                     onChange={(e) => setAcPreference(e.target.value)}
                     className="w-full rounded-xl border border-white/15 bg-[#1C1C1C] px-3.5 py-2.5 text-sm text-white transition-colors focus:border-[#FACC15] focus:outline-none focus:ring-1 focus:ring-[#FACC15]"
                   >
@@ -452,6 +464,7 @@ Please share the applicable fare and vehicle availability.`;
                   <select
                     id={journeyTypeId}
                     value={journeyType}
+                    suppressHydrationWarning
                     onChange={(e) => setJourneyType(e.target.value)}
                     className="w-full rounded-xl border border-white/15 bg-[#1C1C1C] px-3.5 py-2.5 text-sm text-white transition-colors focus:border-[#FACC15] focus:outline-none focus:ring-1 focus:ring-[#FACC15]"
                   >
@@ -472,6 +485,7 @@ Please share the applicable fare and vehicle availability.`;
                   <select
                     id={passengersId}
                     value={passengers}
+                    suppressHydrationWarning
                     onChange={(e) => setPassengers(e.target.value)}
                     className="w-full rounded-xl border border-white/15 bg-[#1C1C1C] px-3.5 py-2.5 text-sm text-white transition-colors focus:border-[#FACC15] focus:outline-none focus:ring-1 focus:ring-[#FACC15]"
                   >
@@ -494,6 +508,7 @@ Please share the applicable fare and vehicle availability.`;
                 <textarea
                   id={notesId}
                   rows={2}
+                  suppressHydrationWarning
                   value={notes}
                   onChange={(e) => setNotes(e.target.value)}
                   placeholder="e.g. Visiting Gupt Godavari and Hanuman Dhara; need early morning pickup at Karwi station..."
@@ -533,6 +548,7 @@ Please share the applicable fare and vehicle availability.`;
                 <div className="flex flex-wrap gap-2.5">
                   <button
                     type="button"
+                    suppressHydrationWarning
                     onClick={() => handleTripEnquiry("call")}
                     className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-xs font-bold text-white transition-colors hover:border-[#FACC15] hover:text-[#FACC15]"
                   >
@@ -542,6 +558,7 @@ Please share the applicable fare and vehicle availability.`;
 
                   <button
                     type="submit"
+                    suppressHydrationWarning
                     className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#FACC15] px-6 py-3 text-xs font-bold text-black shadow-[0_0_20px_rgba(250,204,21,0.2)] transition-all hover:bg-white"
                   >
                     <MessageCircle size={16} />

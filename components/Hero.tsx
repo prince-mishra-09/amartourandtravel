@@ -18,6 +18,8 @@ import {
   CheckCircle2,
   MapPin,
   Sparkles,
+  Star,
+  MessageCircle,
 } from "lucide-react";
 import { BUSINESS_DETAILS, VEHICLE_FLEET } from "@/lib/business";
 
@@ -110,6 +112,30 @@ export default function Hero() {
         className="pointer-events-none absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_70%_30%,rgba(250,204,21,0.08),transparent_55%)]"
       />
 
+      {/* Sacred Chitrakoot Mountain Backdrop (Blends organically into dark background) */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-0 z-0 h-[260px] w-[85%] max-w-[520px] overflow-hidden opacity-30 sm:h-[350px] sm:w-[55%] sm:opacity-40 lg:h-[420px] lg:w-[45%]"
+        style={{
+          maskImage:
+            "radial-gradient(ellipse at 85% 15%, black 25%, transparent 75%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse at 85% 15%, black 25%, transparent 75%)",
+        }}
+      >
+        <Image
+          src="/chitrakoot-mountains.jpg"
+          alt="Chitrakoot Kamadgiri Holy Hills"
+          fill
+          priority
+          sizes="(max-width: 768px) 85vw, 45vw"
+          className="object-cover object-right-top mix-blend-luminosity brightness-110 contrast-125"
+        />
+        {/* Soft edge fade overlays to guarantee 0 sharp edges */}
+        <div className="absolute inset-0 bg-gradient-to-l from-transparent via-[#090909]/40 to-[#090909]" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#090909] via-transparent to-transparent" />
+      </div>
+
       {/* 2. Compact Branded Header */}
       <header className="relative z-20 shrink-0 mx-auto w-full max-w-7xl border-b border-white/10 px-4 py-2 sm:px-6 sm:py-2.5 lg:px-8">
         <div className="flex items-center justify-between">
@@ -164,6 +190,7 @@ export default function Hero() {
           {/* Mobile menu button */}
           <button
             type="button"
+            suppressHydrationWarning
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             onClick={() => setMenuOpen((open) => !open)}
@@ -233,8 +260,8 @@ export default function Hero() {
       </AnimatePresence>
 
       {/* 3. Hero Main Content — Cohesive, Balanced & Rich */}
-      <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-7xl flex-1 flex-col justify-between px-3.5 py-2.5 sm:px-6 sm:py-4 lg:justify-center lg:px-8 lg:py-6">
-        <div className="flex flex-1 flex-col justify-between gap-2.5 sm:gap-3.5 lg:grid lg:grid-cols-[1fr_1.05fr] lg:gap-10 lg:items-center lg:flex-initial">
+      <div className="relative z-10 mx-auto flex w-full min-w-0 max-w-7xl flex-1 flex-col justify-between sm:justify-center px-3.5 py-2.5 sm:px-6 sm:py-5 lg:px-8 lg:py-6">
+        <div className="flex flex-col flex-1 justify-between gap-2.5 sm:gap-4 lg:grid lg:grid-cols-[1fr_1.05fr] lg:gap-10 lg:items-center">
           
           {/* LEFT COLUMN (Desktop) / TOP CHUNK (Mobile) */}
           <div className="w-full min-w-0 max-w-full flex flex-col justify-center lg:col-start-1 lg:row-start-1">
@@ -245,13 +272,13 @@ export default function Hero() {
               transition={{ duration, delay: reduceMotion ? 0 : 0.05 }}
               className="mb-1 inline-flex self-start items-center gap-1.5 rounded-full border border-white/10 bg-white/[0.04] px-2.5 py-0.5 backdrop-blur-md"
             >
-              <span className="h-1.5 w-1.5 rounded-full bg-[#FACC15]" />
+              <span className="h-1.5 w-1.5 rounded-full bg-[#FACC15] animate-pulse" />
               <span className="text-[9px] font-bold tracking-[0.14em] text-[#FACC15] uppercase sm:text-[10px]">
-                CHITRAKOOT DARSHAN · LOCAL & OUTSTATION
+                CHITRAKOOT DARSHAN · 24×7 TAXI & TOUR SERVICE
               </span>
             </motion.div>
 
-            {/* Main Headline */}
+            {/* Main Headline — Grand & Impactful */}
             <motion.h1
               initial={{ opacity: 0, y: reduceMotion ? 0 : 14 }}
               animate={{ opacity: 1, y: 0 }}
@@ -260,23 +287,54 @@ export default function Hero() {
                 delay: reduceMotion ? 0 : 0.1,
                 ease: [0.22, 1, 0.36, 1],
               }}
-              className="text-[23px] xs:text-[26px] sm:text-4xl lg:text-[40px] xl:text-[44px] font-black leading-[1.12] tracking-tight break-words"
+              className="text-[30px] xs:text-[34px] sm:text-4xl lg:text-[48px] xl:text-[52px] font-black leading-[1.05] tracking-tight break-words"
             >
               DISCOVER CHITRAKOOT.
               <span className="block text-[#FACC15]">TRAVEL WITH COMFORT.</span>
             </motion.h1>
+
+            {/* Subtitle in Hindi for authentic pilgrim connection */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration, delay: reduceMotion ? 0 : 0.12 }}
+              className="mt-1 text-xs xs:text-[13px] sm:text-sm font-semibold text-[#FACC15]/95 tracking-wide"
+            >
+              ॥ आस्था, आराम एवं सुरक्षित तीर्थ यात्रा — चित्रकूट धाम दर्शन सेवा ॥
+            </motion.p>
 
             {/* Informative Introductory Paragraph */}
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration, delay: reduceMotion ? 0 : 0.16 }}
-              className="mt-1 text-xs xs:text-[12.5px] sm:text-sm text-white/75 leading-relaxed break-words max-w-md sm:max-w-lg"
+              className="mt-1.5 text-xs xs:text-[12.5px] sm:text-sm text-white/75 leading-relaxed break-words max-w-md sm:max-w-lg"
             >
               Book comfortable rides for Chitrakoot darshan, temple visits, local sightseeing and outstation journeys. Explore our available vehicles, choose the right option for your family or group, and contact us directly to plan your trip.
             </motion.p>
 
-            {/* Quick Trip Route Chips (Gives immediate purpose & balances space) */}
+            {/* Trust, Rating & Social Proof Strip (Pilgrim Reviews & Verified Driver) */}
+            <div className="mt-2 flex flex-wrap items-center gap-1.5 xs:gap-2">
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-[#FACC15]/30 bg-[#FACC15]/10 px-2.5 py-0.5 backdrop-blur-md">
+                <div className="flex items-center gap-0.5 text-[#FACC15]">
+                  <Star size={10} className="fill-[#FACC15]" />
+                  <Star size={10} className="fill-[#FACC15]" />
+                  <Star size={10} className="fill-[#FACC15]" />
+                  <Star size={10} className="fill-[#FACC15]" />
+                  <Star size={10} className="fill-[#FACC15]" />
+                </div>
+                <span className="text-[10px] sm:text-xs font-bold text-white">
+                  4.9 <span className="font-medium text-[#FACC15]">(280+ तीर्थयात्री समीक्षाएं)</span>
+                </span>
+              </div>
+
+              <div className="inline-flex items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] px-2 py-0.5 text-[9.5px] sm:text-[11px] font-medium text-white/80">
+                <ShieldCheck size={11} className="text-emerald-400" />
+                <span>100% वेरिफाइड लोकल ड्राइवर</span>
+              </div>
+            </div>
+
+            {/* Quick Trip Route Chips (Informative & fills the space purposefully) */}
             <motion.div
               initial={{ opacity: 0, y: reduceMotion ? 0 : 8 }}
               animate={{ opacity: 1, y: 0 }}
@@ -287,7 +345,7 @@ export default function Hero() {
                 <a
                   key={trip.en}
                   href={trip.href}
-                  className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/[0.04] px-2.5 py-0.5 sm:py-1 text-[10px] sm:text-xs font-medium text-white/85 transition-all hover:border-[#FACC15] hover:bg-[#FACC15]/10 hover:text-[#FACC15]"
+                  className="inline-flex items-center gap-1 rounded-full border border-white/15 bg-white/[0.04] px-2.5 py-1 text-[10px] sm:text-xs font-medium text-white/85 transition-all hover:border-[#FACC15] hover:bg-[#FACC15]/10 hover:text-[#FACC15]"
                 >
                   <MapPin size={10} className="text-[#FACC15]" />
                   <span>{trip.label}</span>
@@ -295,7 +353,23 @@ export default function Hero() {
               ))}
             </motion.div>
 
-            {/* Desktop CTAs (Hidden on mobile where CTAs appear below car details) */}
+            {/* Key Service Guarantees (Clean micro-badges) */}
+            <div className="mt-1.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-[10px] sm:text-xs text-white/60">
+              <span className="inline-flex items-center gap-1 text-white/80">
+                <CheckCircle2 size={11} className="text-[#FACC15]" />
+                साफ AC / Non-AC गाड़ियां
+              </span>
+              <span className="inline-flex items-center gap-1 text-white/80">
+                <CheckCircle2 size={11} className="text-[#FACC15]" />
+                लोकल अनुभवी ड्राइवर
+              </span>
+              <span className="inline-flex items-center gap-1 text-white/80">
+                <CheckCircle2 size={11} className="text-[#FACC15]" />
+                पारदर्शी किराया
+              </span>
+            </div>
+
+            {/* Desktop CTAs (Hidden on mobile where CTAs appear at bottom of mobile view) */}
             <div className="hidden lg:flex lg:flex-col lg:gap-3.5 mt-4">
               <div className="flex items-center gap-3">
                 <a
@@ -318,7 +392,7 @@ export default function Hero() {
                 </a>
               </div>
 
-              {/* Desktop Trust Metrics (Eliminates the empty black void on desktop!) */}
+              {/* Desktop Trust Metrics */}
               <div className="grid grid-cols-3 gap-2.5 pt-2 border-t border-white/10 max-w-lg">
                 {TRUST_METRICS.map((metric) => (
                   <div
@@ -340,7 +414,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN (Desktop) / MIDDLE CHUNK (Mobile) — Interactive Vehicle Showcase */}
+          {/* RIGHT COLUMN (Desktop) / LOWER VEHICLE & BOTTOM CHUNK (Mobile) — Interactive Vehicle Showcase */}
           <motion.div
             initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -348,157 +422,179 @@ export default function Hero() {
               duration: reduceMotion ? 0 : 0.5,
               delay: reduceMotion ? 0 : 0.12,
             }}
-            className="w-full min-w-0 max-w-full flex flex-col lg:col-start-2 lg:row-start-1"
+            className="w-full min-w-0 max-w-full flex flex-col justify-end lg:justify-center lg:col-start-2 lg:row-start-1 mt-auto lg:mt-0"
           >
-            {/* Quick Vehicle Selector Chips (Lets user tap and preview any vehicle directly!) */}
-            <div className="mb-1.5 flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
-              <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-white/50 pr-0.5">
-                Fleet:
-              </span>
-              {VEHICLE_FLEET.map((v, i) => {
-                const isCurrent = currentVehicleIndex === i;
-                return (
-                  <button
-                    key={v.id}
-                    type="button"
-                    onClick={() => setCurrentVehicleIndex(i)}
-                    className={`shrink-0 rounded-lg px-2.5 py-1 text-[10.5px] sm:text-xs font-bold transition-all duration-200 ${
-                      isCurrent
-                        ? "bg-[#FACC15] text-[#111111] shadow-[0_0_12px_rgba(250,204,21,0.35)] scale-105"
-                        : "border border-white/10 bg-white/[0.04] text-white/70 hover:border-white/30 hover:text-white"
-                    }`}
-                  >
-                    {v.name.replace("Maruti Suzuki ", "").replace("Mahindra ", "").replace("Tata ", "")}
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* 16:9 Landscape Frame (Clean without large text overlay) */}
-            <div className="relative w-full aspect-video overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-[#141414] shadow-2xl">
-              {VEHICLE_FLEET.map((vehicle, index) => {
-                const isActive = currentVehicleIndex === index;
-                return (
-                  <div
-                    key={vehicle.id}
-                    className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
-                      isActive
-                        ? "opacity-100 z-10 pointer-events-auto"
-                        : "opacity-0 z-0 pointer-events-none"
-                    }`}
-                  >
-                    <Image
-                      src={vehicle.image}
-                      alt={`${vehicle.name} (${vehicle.hindiName}) at Amar Singh Tour & Travels`}
-                      fill
-                      priority={index === 0}
-                      sizes="(max-width: 1024px) 100vw, 55vw"
-                      className={`object-cover ${getVehiclePosition(vehicle.id)}`}
-                    />
-                  </div>
-                );
-              })}
-
-              {/* Minimal vignette at top & edges only to keep badge and chevrons clear */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-transparent to-transparent"
-              />
-
-              {/* Small Top Badge */}
-              <div className="absolute left-2.5 top-2.5 z-20 flex items-center gap-1.5 sm:left-4 sm:top-4 sm:gap-2">
-                <span className="rounded-full border border-white/20 bg-black/60 px-2 py-0.5 text-[8.5px] sm:text-[10px] font-bold tracking-wider text-white backdrop-blur-md sm:px-3 sm:py-1">
-                  चित्रकूट धाम · CHITRAKOOT
+            {/* Lower Vehicle block (Placed down to fill the empty space smoothly) */}
+            <div className="w-full">
+              {/* Quick Vehicle Selector Chips */}
+              <div className="mb-1.5 flex items-center gap-1.5 overflow-x-auto pb-1 no-scrollbar">
+                <span className="shrink-0 text-[10px] font-bold uppercase tracking-wider text-white/50 pr-0.5">
+                  Fleet:
                 </span>
-                <span className="rounded-full bg-[#FACC15] px-1.5 py-0.5 text-[8px] sm:text-[9px] font-black text-black sm:px-2.5 sm:py-1">
-                  {currentVehicleIndex + 1}/{VEHICLE_FLEET.length}
-                </span>
-              </div>
-
-              {/* Left / Right Carousel Chevrons */}
-              <button
-                type="button"
-                onClick={() =>
-                  setCurrentVehicleIndex(
-                    (prev) => (prev - 1 + VEHICLE_FLEET.length) % VEHICLE_FLEET.length
-                  )
-                }
-                aria-label="Previous vehicle"
-                className="absolute left-2 top-1/2 z-20 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-[#FACC15] hover:text-black sm:left-3 sm:h-9 sm:w-9"
-              >
-                <ChevronLeft size={15} />
-              </button>
-
-              <button
-                type="button"
-                onClick={() =>
-                  setCurrentVehicleIndex((prev) => (prev + 1) % VEHICLE_FLEET.length)
-                }
-                aria-label="Next vehicle"
-                className="absolute right-2 top-1/2 z-20 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-[#FACC15] hover:text-black sm:right-3 sm:h-9 sm:w-9"
-              >
-                <ChevronRight size={15} />
-              </button>
-            </div>
-
-            {/* Compact Vehicle Details Immediately Below the Image */}
-            <div className="mt-2 sm:mt-2.5 rounded-xl border border-white/10 bg-[#141414]/90 p-2.5 sm:p-3 backdrop-blur-md">
-              <div className="flex items-center justify-between gap-2">
-                <div className="flex items-center gap-2 min-w-0">
-                  <h3 className="truncate text-[13px] sm:text-sm font-semibold text-white">
-                    {activeVehicle.name}
-                  </h3>
-                  <span className="shrink-0 rounded bg-[#FACC15]/20 border border-[#FACC15]/40 px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-[#FACC15]">
-                    {activeVehicle.seats}
-                  </span>
-                </div>
-
-                <a
-                  href="#booking-enquiry"
-                  className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#FACC15] px-2.5 py-1 text-[10px] sm:text-[11px] font-bold text-black transition-colors hover:bg-white active:scale-95"
-                >
-                  <span>Enquire</span>
-                  <ArrowUpRight size={11} />
-                </a>
-              </div>
-
-              <div className="mt-1 flex items-center justify-between gap-3">
-                <p className="line-clamp-2 text-[10px] sm:text-[11px] text-white/65 leading-snug">
-                  {getVehicleDesc(activeVehicle)}
-                </p>
-
-                {/* Subtle Dots */}
-                <div className="flex items-center gap-1 shrink-0">
-                  {VEHICLE_FLEET.map((v, i) => (
+                {VEHICLE_FLEET.map((v, i) => {
+                  const isCurrent = currentVehicleIndex === i;
+                  return (
                     <button
                       key={v.id}
                       type="button"
+                      suppressHydrationWarning
                       onClick={() => setCurrentVehicleIndex(i)}
-                      aria-label={`Show ${v.name}`}
-                      className={`h-1 rounded-full transition-all duration-300 ${
-                        currentVehicleIndex === i
-                          ? "w-3 bg-[#FACC15]"
-                          : "w-1 bg-white/30 hover:bg-white/60"
+                      className={`shrink-0 rounded-lg px-2.5 py-1 text-[10.5px] sm:text-xs font-bold transition-all duration-200 ${
+                        isCurrent
+                          ? "bg-[#FACC15] text-[#111111] shadow-[0_0_12px_rgba(250,204,21,0.35)] scale-105"
+                          : "border border-white/10 bg-white/[0.04] text-white/70 hover:border-white/30 hover:text-white"
                       }`}
-                    />
-                  ))}
+                    >
+                      {v.name.replace("Maruti Suzuki ", "").replace("Mahindra ", "").replace("Tata ", "")}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* 16:9 Landscape Frame (Clean without large text overlay) */}
+              <div className="relative w-full aspect-video overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-[#141414] shadow-2xl">
+                {VEHICLE_FLEET.map((vehicle, index) => {
+                  const isActive = currentVehicleIndex === index;
+                  return (
+                    <div
+                      key={vehicle.id}
+                      className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                        isActive
+                          ? "opacity-100 z-10 pointer-events-auto"
+                          : "opacity-0 z-0 pointer-events-none"
+                      }`}
+                    >
+                      <Image
+                        src={vehicle.image}
+                        alt={`${vehicle.name} (${vehicle.hindiName}) at Amar Singh Tour & Travels`}
+                        fill
+                        priority={index <= 1}
+                        sizes="(max-width: 1024px) 100vw, 55vw"
+                        className={`object-cover ${getVehiclePosition(vehicle.id)}`}
+                      />
+                    </div>
+                  );
+                })}
+
+                {/* Minimal vignette at top & edges only to keep badge and chevrons clear */}
+                <div
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-b from-black/40 via-transparent to-transparent"
+                />
+
+                {/* Small Top Badge */}
+                <div className="absolute left-2.5 top-2.5 z-20 flex items-center gap-1.5 sm:left-4 sm:top-4 sm:gap-2">
+                  <span className="rounded-full border border-white/20 bg-black/60 px-2 py-0.5 text-[8.5px] sm:text-[10px] font-bold tracking-wider text-white backdrop-blur-md sm:px-3 sm:py-1">
+                    चित्रकूट धाम · CHITRAKOOT
+                  </span>
+                  <span className="rounded-full bg-[#FACC15] px-1.5 py-0.5 text-[8px] sm:text-[9px] font-black text-black sm:px-2.5 sm:py-1">
+                    {currentVehicleIndex + 1}/{VEHICLE_FLEET.length}
+                  </span>
+                </div>
+
+                {/* Left / Right Carousel Chevrons */}
+                <button
+                  type="button"
+                  suppressHydrationWarning
+                  onClick={() =>
+                    setCurrentVehicleIndex(
+                      (prev) => (prev - 1 + VEHICLE_FLEET.length) % VEHICLE_FLEET.length
+                    )
+                  }
+                  aria-label="Previous vehicle"
+                  className="absolute left-2 top-1/2 z-20 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-[#FACC15] hover:text-black sm:left-3 sm:h-9 sm:w-9"
+                >
+                  <ChevronLeft size={15} />
+                </button>
+
+                <button
+                  type="button"
+                  suppressHydrationWarning
+                  onClick={() =>
+                    setCurrentVehicleIndex((prev) => (prev + 1) % VEHICLE_FLEET.length)
+                  }
+                  aria-label="Next vehicle"
+                  className="absolute right-2 top-1/2 z-20 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-full bg-black/60 text-white backdrop-blur-md transition-all hover:bg-[#FACC15] hover:text-black sm:right-3 sm:h-9 sm:w-9"
+                >
+                  <ChevronRight size={15} />
+                </button>
+              </div>
+
+              {/* Compact Vehicle Details Immediately Below the Image */}
+              <div className="mt-2 rounded-xl border border-white/10 bg-[#141414]/90 p-2.5 backdrop-blur-md">
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2 min-w-0">
+                    <h3 className="truncate text-[13px] sm:text-sm font-semibold text-white">
+                      {activeVehicle.name}
+                    </h3>
+                    <span className="shrink-0 rounded bg-[#FACC15]/20 border border-[#FACC15]/40 px-1.5 py-0.5 text-[10px] sm:text-[11px] font-bold text-[#FACC15]">
+                      {activeVehicle.seats}
+                    </span>
+                  </div>
+
+                  <a
+                    href="#booking-enquiry"
+                    className="inline-flex shrink-0 items-center gap-1 rounded-full bg-[#FACC15] px-2.5 py-1 text-[10px] sm:text-[11px] font-bold text-black transition-colors hover:bg-white active:scale-95"
+                  >
+                    <span>Enquire</span>
+                    <ArrowUpRight size={11} />
+                  </a>
+                </div>
+
+                <div className="mt-1 flex items-center justify-between gap-3">
+                  <p className="line-clamp-2 text-[10px] sm:text-[11px] text-white/65 leading-snug">
+                    {getVehicleDesc(activeVehicle)}
+                  </p>
+
+                  {/* Subtle Dots */}
+                  <div className="flex items-center gap-1 shrink-0">
+                    {VEHICLE_FLEET.map((v, i) => (
+                      <button
+                        key={v.id}
+                        type="button"
+                        suppressHydrationWarning
+                        onClick={() => setCurrentVehicleIndex(i)}
+                        aria-label={`Show ${v.name}`}
+                        className={`h-1 rounded-full transition-all duration-300 ${
+                          currentVehicleIndex === i
+                            ? "w-3 bg-[#FACC15]"
+                            : "w-1 bg-white/30 hover:bg-white/60"
+                        }`}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* MOBILE ONLY: Booking CTAs & Quick Contact Bar */}
-            <div className="mt-2 flex flex-col gap-1.5 lg:hidden">
-              <a
-                href="#booking-enquiry"
-                className="group flex min-h-10 w-full items-center justify-center gap-2 rounded-xl bg-[#FACC15] px-4 py-2 text-xs font-bold text-[#111111] shadow-[0_0_20px_rgba(250,204,21,0.25)] transition-all duration-300 hover:bg-white active:scale-[0.98]"
-              >
-                <span>Book a Ride</span>
-                <ArrowUpRight
-                  size={14}
-                  className="transition-transform duration-300 group-hover:rotate-45"
-                />
-              </a>
+            {/* MOBILE ONLY: Split 30% WhatsApp + 70% Book a Ride Action Bar */}
+            <div className="mt-2.5 flex flex-col gap-1.5 lg:hidden">
+              <div className="flex items-center gap-2 w-full">
+                {/* Left 30%: WhatsApp Button */}
+                <a
+                  href={`https://wa.me/91${BUSINESS_DETAILS.phones[0].number}?text=${encodeURIComponent("Namaste Amar Singh Tour & Travels, I want to book/enquire about a taxi for Chitrakoot Darshan.")}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex w-[30%] min-h-11 items-center justify-center gap-1.5 rounded-xl bg-[#25D366] px-2 py-2 text-xs font-black text-black shadow-[0_0_15px_rgba(37,211,102,0.3)] transition-all duration-300 hover:brightness-110 active:scale-95"
+                >
+                  <MessageCircle size={15} className="shrink-0 fill-black" />
+                  <span>WhatsApp</span>
+                </a>
 
+                {/* Right 70%: Book a Ride Button */}
+                <a
+                  href="#booking-enquiry"
+                  className="group flex w-[70%] min-h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-[#FACC15] via-[#FDE047] to-[#FACC15] px-4 py-2 text-xs font-black text-[#111111] shadow-[0_4px_20px_rgba(250,204,21,0.3)] transition-all duration-300 hover:brightness-105 active:scale-95"
+                >
+                  <span>Book a Ride</span>
+                  <ArrowUpRight
+                    size={15}
+                    className="transition-transform duration-300 group-hover:rotate-45"
+                  />
+                </a>
+              </div>
+
+              {/* Quick Direct Call & Guide Strip */}
               <div className="flex items-center justify-between gap-2 rounded-xl border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] text-white/70 backdrop-blur-sm">
                 <a
                   href={BUSINESS_DETAILS.phones[0].tel}
@@ -517,7 +613,7 @@ export default function Hero() {
                 </a>
               </div>
 
-              {/* Mobile Trust Badges (Fills the lower mobile space cleanly with authentic trust!) */}
+              {/* Mobile Trust Badges (Anchored to finish the bottom cleanly) */}
               <div className="grid grid-cols-3 gap-1.5 pt-0.5">
                 <div className="rounded-lg border border-white/10 bg-white/[0.03] px-1.5 py-1 text-center backdrop-blur-sm">
                   <span className="block text-[11px] font-black text-[#FACC15]">500+</span>

@@ -271,6 +271,7 @@ export default function VehicleGallery() {
 
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={closeGallery}
                 aria-label="Close photo viewer"
                 className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/10 text-white transition-colors hover:bg-[#FACC15] hover:text-black"
@@ -283,6 +284,7 @@ export default function VehicleGallery() {
             <div className="relative flex flex-1 items-center justify-center py-4">
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={showPrevious}
                 aria-label="View previous photo"
                 className="absolute left-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-[#FACC15] hover:text-black sm:left-4"
@@ -302,6 +304,7 @@ export default function VehicleGallery() {
 
               <button
                 type="button"
+                suppressHydrationWarning
                 onClick={showNext}
                 aria-label="View next photo"
                 className="absolute right-2 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-black/60 text-white transition-colors hover:bg-[#FACC15] hover:text-black sm:right-4"

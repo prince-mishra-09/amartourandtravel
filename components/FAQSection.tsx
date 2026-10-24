@@ -106,6 +106,7 @@ export default function FAQSection() {
                     <button
                       id={buttonId}
                       type="button"
+                      suppressHydrationWarning
                       aria-expanded={isOpen}
                       aria-controls={panelId}
                       onClick={() => setOpenId(isOpen ? null : faq.id)}
