@@ -57,46 +57,82 @@ export default function BookingEnquiry({
   const passengersId = useId();
   const notesId = useId();
 
+  const formatDisplayDate = (dateString: string) => {
+    if (!dateString) return "To be discussed";
+    try {
+      const [year, month, day] = dateString.split("-").map(Number);
+      if (year && month && day) {
+        const d = new Date(year, month - 1, day);
+        return d.toLocaleDateString("en-IN", {
+          day: "numeric",
+          month: "short",
+          year: "numeric",
+        });
+      }
+    } catch {
+      // fallback
+    }
+    return dateString;
+  };
+
+  const getFormattedWhatsAppMessage = () => {
+    const formattedDate = formatDisplayDate(travelDate);
+    const cleanPickup = pickup.trim() || "Chitrakoot (Finalize over call/chat)";
+    const cleanDest = destination.trim() || "Chitrakoot Dham Sightseeing";
+    const cleanNotes = notes.trim();
+
+    return `🚖 *AMAR SINGH TOUR & TRAVELS (CHITRAKOOT)*
+📋 *नई यात्रा बुकिंग पूछताछ (Travel Booking Enquiry)*
+━━━━━━━━━━━━━━━━━━━━
+👤 *Customer Name:* ${fullName.trim()}
+📞 *Mobile Number:* ${phone.trim()}
+
+📍 *Pickup Point:* ${cleanPickup}
+🚩 *Destination / Route:* ${cleanDest}
+📅 *Travel Date:* ${formattedDate}
+⏰ *Pickup Time:* ${pickupTime || "To be discussed"}
+
+🚗 *Vehicle:* ${vehicle || "Any Suitable Vehicle (Ertiga / Scorpio / Dzire / etc.)"}
+👥 *Passengers:* ${passengers}
+🛣️ *Trip Mode:* ${journeyType}
+❄️ *AC Option:* ${acPreference}
+${cleanNotes ? `\n📝 *Special Request:* ${cleanNotes}\n` : ""}━━━━━━━━━━━━━━━━━━━━
+💬 *Kripya is yatra ke liye fare quotation aur vehicle availability details share karein.*`;
+  };
+
+  const buildWhatsAppUrl = () => {
+    const message = getFormattedWhatsAppMessage();
+    const waNumber = BUSINESS_DETAILS.phones[0].number;
+    return `https://wa.me/91${waNumber}?text=${encodeURIComponent(message)}`;
+  };
+
   const handleTripEnquiry = (channel: "whatsapp" | "call") => {
     // Basic validation
     if (!fullName.trim()) {
-      setValidationError("Please enter your name.");
+      setValidationError("Please enter your name (कृपया अपना नाम लिखें).");
       return;
     }
     const cleanPhone = phone.replace(/\D/g, "");
     if (!cleanPhone || cleanPhone.length < 10) {
-      setValidationError("Please enter a valid 10-digit mobile number.");
+      setValidationError("Please enter a valid 10-digit mobile number (कृपया 10 अंकों का मोबाइल नंबर डालें).");
       return;
     }
     if (!travelDate) {
-      setValidationError("Please select your travel date.");
+      setValidationError("Please select your travel date (कृपया यात्रा की तारीख चुनें).");
       return;
     }
 
     setValidationError("");
-    setFormSubmitted(true);
-
-    const messageText = `*New Travel Enquiry - Amar Singh Tour & Travels*
-*Name:* ${fullName.trim()}
-*Phone:* ${phone.trim()}
-*Trip Category:* ${tripType}
-*Preferred Vehicle:* ${vehicle || "Any suitable vehicle"}
-*AC Preference:* ${acPreference}
-*Journey Mode:* ${journeyType}
-*Pickup Location:* ${pickup || "Chitrakoot (To be finalized)"}
-*Destination:* ${destination || "Chitrakoot Sightseeing"}
-*Travel Date:* ${travelDate}
-*Pickup Time:* ${pickupTime || "To be discussed"}
-*Passengers:* ${passengers}
-${notes ? `*Additional Notes:* ${notes}` : ""}
-
-Please share the applicable fare and vehicle availability.`;
 
     if (channel === "whatsapp") {
-      const waNumber = BUSINESS_DETAILS.phones[0].number;
-      const url = `https://wa.me/91${waNumber}?text=${encodeURIComponent(messageText)}`;
-      window.open(url, "_blank");
+      const url = buildWhatsAppUrl();
+      setFormSubmitted(true);
+      const opened = window.open(url, "_blank");
+      if (!opened || opened.closed || typeof opened.closed === "undefined") {
+        window.location.href = url;
+      }
     } else {
+      setFormSubmitted(true);
       window.location.href = BUSINESS_DETAILS.phones[0].tel;
     }
   };
@@ -151,46 +187,48 @@ Please share the applicable fare and vehicle availability.`;
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="py-8 text-center"
+              className="py-6 text-center"
             >
-              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#FACC15]/20 text-[#FACC15]">
+              <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-[#25D366]/20 text-[#25D366]">
                 <CheckCircle2 size={36} />
               </div>
 
               <h3 className="text-2xl font-black text-white sm:text-3xl">
-                Ready to Discuss Your Trip!
+                Enquiry Details Prepared!
               </h3>
-              <p className="mx-auto mt-3 max-w-md text-sm text-white/70">
-                Thank you, <span className="font-bold text-[#FACC15]">{fullName}</span>.
-                Your travel requirements are prepared. You can connect with Amar Singh
-                Tour & Travels via WhatsApp or phone call right away.
+              <p className="mx-auto mt-2 max-w-md text-sm text-white/70">
+                Thank you, <span className="font-bold text-[#FACC15]">{fullName}</span>!
+                Aapka travel plan WhatsApp ke liye ache format me generate ho gaya hai.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-                <button
-                  type="button"
-                  suppressHydrationWarning
-                  onClick={() => handleTripEnquiry("whatsapp")}
-                  className="inline-flex items-center gap-2 rounded-full bg-[#FACC15] px-6 py-3.5 text-sm font-bold text-black transition-colors hover:bg-white"
+              {/* Formatted Message Preview */}
+              <div className="mx-auto my-5 max-w-lg overflow-hidden rounded-2xl border border-white/10 bg-[#0B0B0B] text-left">
+                <div className="flex items-center justify-between border-b border-white/10 bg-white/[0.04] px-4 py-2 text-[11px] font-bold text-[#FACC15]">
+                  <span>WhatsApp Message Preview</span>
+                  <span className="text-white/40">Auto-Drafted</span>
+                </div>
+                <div className="p-4 text-xs leading-relaxed text-white/85 font-mono whitespace-pre-wrap">
+                  {getFormattedWhatsAppMessage()}
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href={buildWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full bg-[#FACC15] px-7 py-3.5 text-sm font-bold text-black shadow-[0_0_25px_rgba(250,204,21,0.35)] transition-all hover:bg-white hover:scale-105"
                 >
                   <MessageCircle size={18} />
-                  Send via WhatsApp
-                </button>
+                  Open in WhatsApp Again ↗
+                </a>
 
                 <a
                   href={BUSINESS_DETAILS.phones[0].tel}
                   className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold text-white transition-colors hover:border-[#FACC15] hover:text-[#FACC15]"
                 >
                   <Phone size={18} />
-                  Call 8960736006
-                </a>
-
-                <a
-                  href={BUSINESS_DETAILS.phones[1].tel}
-                  className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-6 py-3.5 text-sm font-bold text-white transition-colors hover:border-[#FACC15] hover:text-[#FACC15]"
-                >
-                  <Phone size={18} />
-                  Call 7651804647
+                  Call {BUSINESS_DETAILS.phones[0].display}
                 </a>
               </div>
 
@@ -198,9 +236,9 @@ Please share the applicable fare and vehicle availability.`;
                 type="button"
                 suppressHydrationWarning
                 onClick={() => setFormSubmitted(false)}
-                className="mt-6 text-xs text-white/40 underline underline-offset-4 hover:text-white"
+                className="mt-6 text-xs text-white/45 underline underline-offset-4 transition-colors hover:text-white"
               >
-                Modify trip details
+                ← Back to edit form details
               </button>
             </motion.div>
           ) : (
@@ -526,44 +564,50 @@ Please share the applicable fare and vehicle availability.`;
                 </p>
               </div>
 
-              {/* Form Action Buttons */}
-              <div className="flex flex-wrap items-center justify-between gap-3 pt-2">
-                <div className="text-xs text-white/45">
-                  Call directly for urgent bookings:{" "}
-                  <a
-                    href={BUSINESS_DETAILS.phones[0].tel}
-                    className="font-bold text-[#FACC15] hover:underline"
-                  >
-                    {BUSINESS_DETAILS.phones[0].display}
-                  </a>{" "}
-                  /{" "}
-                  <a
-                    href={BUSINESS_DETAILS.phones[1].tel}
-                    className="font-bold text-[#FACC15] hover:underline"
-                  >
-                    {BUSINESS_DETAILS.phones[1].display}
-                  </a>
+              {/* Bottom Validation Alert (if any) */}
+              {validationError && (
+                <div
+                  role="alert"
+                  className="flex items-center gap-2.5 rounded-xl border border-red-500/40 bg-red-500/15 p-3.5 text-xs text-red-200"
+                >
+                  <AlertCircle size={16} className="shrink-0 text-red-400" />
+                  <span className="font-medium">{validationError}</span>
                 </div>
+              )}
 
-                <div className="flex flex-wrap gap-2.5">
-                  <button
-                    type="button"
-                    suppressHydrationWarning
-                    onClick={() => handleTripEnquiry("call")}
-                    className="inline-flex min-h-12 items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-xs font-bold text-white transition-colors hover:border-[#FACC15] hover:text-[#FACC15]"
-                  >
-                    <Phone size={15} />
-                    Call For Quote
-                  </button>
+              {/* Form Action: Yellow Theme Submit Button */}
+              <div className="space-y-4 pt-2">
+                <button
+                  type="submit"
+                  suppressHydrationWarning
+                  className="flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-2xl bg-[#FACC15] px-6 py-4 text-base font-black tracking-wide text-black shadow-[0_4px_22px_rgba(250,204,21,0.35)] transition-all duration-300 hover:bg-white hover:scale-[1.01] active:scale-[0.99]"
+                >
+                  <MessageCircle size={20} className="text-black" />
+                  <span>Send Details</span>
+                </button>
 
-                  <button
-                    type="submit"
-                    suppressHydrationWarning
-                    className="inline-flex min-h-12 items-center gap-2 rounded-full bg-[#FACC15] px-6 py-3 text-xs font-bold text-black shadow-[0_0_20px_rgba(250,204,21,0.2)] transition-all hover:bg-white"
-                  >
-                    <MessageCircle size={16} />
-                    Enquire on WhatsApp
-                  </button>
+                {/* Secondary Call Options */}
+                <div className="flex flex-col items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/[0.02] p-3.5 sm:flex-row sm:px-5">
+                  <div className="text-xs text-white/50 text-center sm:text-left">
+                    Direct call booking ke liye:
+                  </div>
+
+                  <div className="flex flex-wrap items-center justify-center gap-2">
+                    <a
+                      href={BUSINESS_DETAILS.phones[0].tel}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-bold text-white transition-colors hover:border-[#FACC15] hover:text-[#FACC15]"
+                    >
+                      <Phone size={13} className="text-[#FACC15]" />
+                      Call {BUSINESS_DETAILS.phones[0].display}
+                    </a>
+                    <a
+                      href={BUSINESS_DETAILS.phones[1].tel}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-3.5 py-2 text-xs font-bold text-white transition-colors hover:border-[#FACC15] hover:text-[#FACC15]"
+                    >
+                      <Phone size={13} className="text-[#FACC15]" />
+                      Call {BUSINESS_DETAILS.phones[1].display}
+                    </a>
+                  </div>
                 </div>
               </div>
             </form>
