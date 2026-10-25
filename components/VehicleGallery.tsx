@@ -188,6 +188,7 @@ export default function VehicleGallery() {
               <motion.button
                 key={photo.title}
                 type="button"
+                suppressHydrationWarning
                 initial={reduceMotion ? false : { opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
@@ -205,7 +206,7 @@ export default function VehicleGallery() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                  loading="lazy"
+                  priority={index < 2}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 

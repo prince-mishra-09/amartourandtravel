@@ -1,6 +1,8 @@
+
 "use client";
 
 import { useState } from "react";
+import TravelIntro from "@/components/TravelIntro";
 import Hero from "@/components/Hero";
 import VehicleShowcase from "@/components/VehicleShowcase";
 import ChitrakootDarshan from "@/components/ChitrakootDarshan";
@@ -17,50 +19,56 @@ import StickyMobileCTA from "@/components/StickyMobileCTA";
 export default function HomePage() {
   const [selectedVehicle, setSelectedVehicle] = useState<string>("");
   const [selectedDestination, setSelectedDestination] = useState<string>("");
-  const [selectedService, setSelectedService] = useState<string>("Chitrakoot Dham Darshan");
+  const [selectedService, setSelectedService] = useState<string>(
+    "Chitrakoot Dham Darshan"
+  );
 
   return (
-    <main className="overflow-hidden">
-      {/* 1. Hero Introduction */}
-      <Hero />
+    <TravelIntro>
+      <main className="overflow-x-clip">
+        {/* 1. Hero Introduction */}
+        <Hero />
 
-      {/* 2. Meet Your Ride / Vehicle Fleet */}
-      <VehicleShowcase onSelectVehicle={setSelectedVehicle} />
+        {/* 2. Meet Your Ride / Vehicle Fleet */}
+        <VehicleShowcase onSelectVehicle={setSelectedVehicle} />
 
-      {/* 3. Chitrakoot Darshan Destination Experience */}
-      <ChitrakootDarshan onSelectDestination={setSelectedDestination} />
+        {/* 3. Chitrakoot Darshan Destination Experience */}
+        <ChitrakootDarshan
+          onSelectDestination={setSelectedDestination}
+        />
 
-      {/* 4. Choose Your Journey */}
-      <JourneySection onSelectService={setSelectedService} />
+        {/* 4. Choose Your Journey */}
+        <JourneySection onSelectService={setSelectedService} />
 
-      {/* 5. How Booking Works */}
-      <BookingProcess />
+        {/* 5. How Booking Works */}
+        <BookingProcess />
 
-      {/* 6. Why Choose Us */}
-      <WhyTravelWithUs />
+        {/* 6. Why Choose Us */}
+        <WhyTravelWithUs />
 
-      {/* 7. Fleet & Sightseeing Gallery */}
-      <VehicleGallery />
+        {/* 7. Fleet & Sightseeing Gallery */}
+        <VehicleGallery />
 
-      {/* 8. Trust and Business Information */}
-      <TrustSection />
+        {/* 8. Trust and Business Information */}
+        <TrustSection />
 
-      {/* 9. FAQs */}
-      <FAQSection />
+        {/* 9. FAQs */}
+        <FAQSection />
 
-      {/* 10. Interactive Booking & Fare Enquiry */}
-      <BookingEnquiry
-        key={`${selectedVehicle}-${selectedDestination}-${selectedService}`}
-        initialVehicle={selectedVehicle}
-        initialDestination={selectedDestination}
-        initialTripType={selectedService}
-      />
+        {/* 10. Interactive Booking & Fare Enquiry */}
+        <BookingEnquiry
+          key={`${selectedVehicle}-${selectedDestination}-${selectedService}`}
+          initialVehicle={selectedVehicle}
+          initialDestination={selectedDestination}
+          initialTripType={selectedService}
+        />
 
-      {/* 11. Contact CTA and Footer */}
-      <ContactFooter />
+        {/* 11. Contact CTA and Footer */}
+        <ContactFooter />
 
-      {/* 12. Floating Sticky Mobile CTA on scroll */}
-      <StickyMobileCTA />
-    </main>
+        {/* 12. Floating Sticky Mobile CTA on scroll */}
+        <StickyMobileCTA />
+      </main>
+    </TravelIntro>
   );
 }

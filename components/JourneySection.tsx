@@ -179,6 +179,7 @@ export default function JourneySection({
                 <div className="border-t border-white/10 p-4 pt-3">
                   <button
                     type="button"
+                    suppressHydrationWarning
                     onClick={() => handleServiceSelect(service)}
                     className="flex w-full items-center justify-between rounded-xl bg-white/[0.05] px-3.5 py-2.5 text-xs font-bold text-white transition-all duration-300 hover:bg-[#FACC15] hover:text-[#111111]"
                   >
